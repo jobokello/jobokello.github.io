@@ -1,9 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-jobokello5.wixsite.com	TRUE	/myportfolio	FALSE	1999999999	svSession	224c3c51abd8078d0d79e17304b4d166f4701b07c1cda066c2028d8f019f91da8c16659fc425c6554f2d1343a88c206d1e60994d53964e647acf431e4f798bcdb07138b991952d5e9ac67e6adc9c42d71380329e46e8dc23db98ac20a6b1f886
-jobokello5.wixsite.com	TRUE	/myportfolio	FALSE	1999999999	TS0126b930	0141ccf485c21280a225f3f67107de1d07a56b66b873c241b5d97a86aa562204a3c325220c42127c9c5d960485518070a92298cb92
-jobokello5.wixsite.com	TRUE	/	FALSE	1999999999	XSRF-TOKEN	1580005600|G3oZwG6SwifF
-jobokello5.wixsite.com	TRUE	/	FALSE	1999999999	ssr-caching	cache,desc=miss,varnish=miss, dc,desc=84"
-jobokello5.wixsite.com	TRUE	/	FALSE	1999999999	hs	2091798460
-.wixsite.com	TRUE	/	FALSE	1999999999	TS016e3841	0141ccf485c21280a225f3f67107de1d07a56b66b873c241b5d97a86aa562204a3c325220c42127c9c5d960485518070a92298cb92
-
