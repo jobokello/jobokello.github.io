@@ -1,233 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖My Munchy Valentine Proposal💖</title>
+
+<title>Count Down To Your Kiss</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+body{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Poppins;
+color:white;
+overflow:hidden;
+
+background:linear-gradient(
+135deg,
+#1a001a,
+#3b003b,
+#6b0044,
+#990033
+);
+
+text-align:center;
+
+}
+
+/* soft glow background */
+
+body::before{
+
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at 20% 30%, rgba(255,100,150,0.25), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,80,120,0.25), transparent 40%);
+
+z-index:0;
+
 }
 
 /* container */
-.container {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  width: 90%;
-  max-width: 420px;
-  position: relative;
-  z-index: 2;
+
+.container{
+
+z-index:2;
+padding:20px;
+
 }
 
-h1 {
-  color: #ff4d6d;
-  font-size: 22px;
+h1{
+
+font-family:"Great Vibes",cursive;
+font-size:70px;
+margin-bottom:10px;
+
+text-shadow:
+0 0 10px #fff,
+0 0 30px #ff6699,
+0 0 50px #ff3366;
+
 }
 
-/* buttons */
-button {
-  padding: 12px 16px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
+.subtitle{
+
+margin-bottom:40px;
+font-size:20px;
+opacity:0.9;
+
 }
 
-#yesBtn {
-  background: #ff4d6d;
-  color: white;
+/* heartbeat */
+
+.heart{
+
+font-size:60px;
+margin-bottom:20px;
+
+animation:beat 1.3s infinite;
+
 }
 
-#noBtn {
-  background: #ccc;
-  position: absolute;
+@keyframes beat{
+
+0%{transform:scale(1);}
+25%{transform:scale(1.2);}
+40%{transform:scale(1);}
+60%{transform:scale(1.2);}
+100%{transform:scale(1);}
+
 }
 
-#message {
-  display: none;
-  font-size: 20px;
-  color: #ff4d6d;
-  margin-top: 15px;
-  font-weight: bold;
+/* timer */
+
+.countdown{
+
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.box{
+
+background:rgba(255,255,255,0.12);
+padding:25px 35px;
+border-radius:20px;
+
+backdrop-filter: blur(12px);
+
+box-shadow:
+0 0 15px rgba(255,120,150,0.6);
+
+}
+
+.time{
+
+font-size:48px;
+font-weight:bold;
+
+}
+
+.label{
+
+font-size:14px;
+letter-spacing:2px;
+
 }
 
 /* floating hearts */
-.heart {
-  position: absolute;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-  pointer-events: none;
+
+.floating{
+
+position:absolute;
+color:#ffb3cc;
+
+animation:floatUp linear infinite;
+
 }
 
-@keyframes float {
-  0% { transform: translateY(100vh); opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
+@keyframes floatUp{
+
+0%{
+
+transform:translateY(100vh);
+opacity:0;
+
 }
 
-/* love letter popup */
-.popup {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
+50%{opacity:1;}
+
+100%{
+
+transform:translateY(-10vh);
+opacity:0;
+
 }
 
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 90%;
-  text-align: left;
-  animation: pop 0.3s ease;
 }
 
-@keyframes pop {
-  from { transform: scale(0.7); }
-  to { transform: scale(1); }
+/* kiss scene */
+
+.kiss-screen{
+
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+background:radial-gradient(circle,#ff3366,#660033);
+
+font-family:"Great Vibes";
+
+font-size:80px;
+
+opacity:0;
+transition:1s;
+
 }
 
-/* fireworks canvas */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
+.kiss-heart{
+
+font-size:120px;
+animation:beat 1s infinite;
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<canvas id="fireworks"></canvas>
-
 <div class="container">
-  <h1>Hey Munchy, Will you be my Valentine? 💘</h1>
 
-  <button id="yesBtn">Yes ❤️</button>
-  <button id="noBtn">No 😢</button>
+<div class="heart">❤️</div>
 
-  <div id="message">You just made me the happiest person alive 💖</div>
+<h1>Count Down To Your Kiss</h1>
+
+<div class="subtitle">
+Every second brings me closer to kissing you Munchy 💋
 </div>
 
-<!-- Love Letter Popup -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <h2>My Love 💌</h2>
-    <p>
-      From the moment you came into my life, everything became brighter.
-      Your smile is my favorite place, your voice my favorite song,
-      and your heart my home. I choose you today and always.
-      Happy Valentine’s Day ❤️
-    </p>
-    <button onclick="closePopup()">Close</button>
-  </div>
+<div class="countdown">
+
+<div class="box">
+<div id="days" class="time">00</div>
+<div class="label">Days</div>
 </div>
 
-<!-- Background music -->
-<audio id="music" loop>
-  <!-- Replace with your mp3 file -->
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<div class="box">
+<div id="hours" class="time">00</div>
+<div class="label">Hours</div>
+</div>
+
+<div class="box">
+<div id="minutes" class="time">00</div>
+<div class="label">Minutes</div>
+</div>
+
+<div class="box">
+<div id="seconds" class="time">00</div>
+<div class="label">Seconds</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- Kiss ending screen -->
+
+<div id="kissScreen" class="kiss-screen">
+
+<div class="kiss-heart">💋</div>
+
+<div>It's Kiss Time</div>
+
+</div>
 
 <script>
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const message = document.getElementById("message");
-const popup = document.getElementById("popup");
-const music = document.getElementById("music");
 
-// play music on interaction (mobile safe)
-document.body.addEventListener("click", () => music.play(), { once: true });
+/* SET DATE */
 
-yesBtn.onclick = () => {
-  message.style.display = "block";
-  popup.style.display = "flex";
-  launchFireworks();
-};
+const targetDate =
+new Date("May 29, 2026 20:00:00").getTime();
 
-function closePopup() {
-  popup.style.display = "none";
+/* countdown */
+
+const timer = setInterval(function(){
+
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+const days =
+Math.floor(distance/(1000*60*60*24));
+
+const hours =
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+const minutes =
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+const seconds =
+Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+if(distance < 0){
+
+clearInterval(timer);
+
+document.querySelector(".container").style.display="none";
+
+const screen =
+document.getElementById("kissScreen");
+
+screen.style.opacity="1";
+
 }
 
-// running no button
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
+},1000);
 
-function moveNo() {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+/* floating hearts */
+
+function heart(){
+
+const h = document.createElement("div");
+
+h.classList.add("floating");
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(Math.random()*25+10)+"px";
+
+h.style.animationDuration=
+(Math.random()*4+4)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},8000);
+
 }
 
-// floating hearts
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHeart, 300);
+setInterval(heart,300);
 
-// fireworks
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-function launchFireworks() {
-  for (let i = 0; i < 80; i++) {
-    setTimeout(() => explode(), i * 20);
-  }
-}
-
-function explode() {
-  const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height / 2;
-  for (let i = 0; i < 30; i++) {
-    const angle = Math.random() * 2 * Math.PI;
-    const speed = Math.random() * 4 + 2;
-    const vx = Math.cos(angle) * speed;
-    const vy = Math.sin(angle) * speed;
-    animateParticle(x, y, vx, vy);
-  }
-}
-
-function animateParticle(x, y, vx, vy) {
-  let life = 60;
-  function draw() {
-    ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
-    ctx.fillRect(x, y, 3, 3);
-    x += vx;
-    y += vy;
-    life--;
-    if (life > 0) requestAnimationFrame(draw);
-  }
-  draw();
-}
 </script>
 
 </body>
